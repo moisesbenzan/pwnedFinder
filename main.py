@@ -98,11 +98,22 @@ def dump_summary(c_target, c_dumps):
         print("Target: {} has not been breached".format(c_target))
 
 
+def sources_summary(c_target, c_sources):
+    if len(c_sources) > 0:
+        print("Found leaked databases containing credentials of the supplied target: {}".format(c_target))
+        for source in c_sources:
+            print("Name: {}".format(source))
+    else:
+        print("Target: {} has not been breached".format(c_target))
+
+
 if __name__ == '__main__':
 
     args = init_parser().parse_args()
-
     for target in args.target:
         sources = check_pwned(target)
-        a_dumps = search_dumps(sources)
-        dump_summary(target, a_dumps)
+        if args.find_dumps:
+            a_dumps = search_dumps(sources)
+            dump_summary(target, a_dumps)
+        else:
+            sources_summary(target, sources)
