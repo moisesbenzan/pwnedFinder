@@ -2,7 +2,7 @@
 _**Version:** 0.01-ALPHA_
 
 ## Description
-Finds 
+Finds leaked credentials in various dump sites
 ## Usage
 ### Installation
 1. Install virtualenv  (OPTIONAL)
